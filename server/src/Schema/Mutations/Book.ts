@@ -1,6 +1,7 @@
 import { GraphQLString, GraphQLInt, GraphQLFloat, GraphQLID } from "graphql";
 import { MessageType } from "../TypeDef/Messages"
-import { Books } from "../../Entities/Book";
+import { Books, BookHistory } from "../../Entities/Book";
+import jwt from "jsonwebtoken";
 
 export const CREATE_BOOK = {
     type: MessageType,
@@ -9,12 +10,16 @@ export const CREATE_BOOK = {
         author: { type: GraphQLString },
         publication_year: { type: GraphQLInt },
         genres: { type: GraphQLString },
-        rating: { type: GraphQLFloat }
+        rating: { type: GraphQLFloat },
+        token: { type: GraphQLString },
     },
     async resolve(parent: any, args: any) {
-        const { title, author, publication_year, genres, rating } = args;
+        const { title, author, publication_year, genres, rating, token } = args;
+        let decodeToken = jwt.verify(token, 'secret');
+        if (!decodeToken) {
+            throw new Error("Invalid token!");
+        }
         const insertBook = await Books.insert(args);
-
         if(insertBook == null || insertBook == undefined) {
             throw new Error("Error");
         } else {
@@ -56,6 +61,7 @@ export const UPDATE_BOOK = {
             throw new Error(`The book with the id: ${id} does not exist`);
         } else {
             await Books.update( {id: id}, args);
+            await BookHistory.insert(args);
             return { successful: true, message: "Book updated"};
         }
     },

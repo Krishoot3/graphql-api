@@ -4,7 +4,7 @@ import { schema } from "./Schema/schema";
 import cors from 'cors'
 import { createConnection } from "typeorm";
 import { Users } from "./Entities/User";
-import { Books } from "./Entities/Book";
+import { BookHistory, Books } from "./Entities/Book";
 
 const main = async () => {
 
@@ -14,9 +14,9 @@ const main = async () => {
         username: "root",
         password: "root",
         logging: true,
-        //when do you want to create a new tables, change synchronize to true
+        //when do you want to create new tables, change synchronize to true
         synchronize: false,
-        entities: [Users, Books],
+        entities: [Users, Books, BookHistory],
     });
 
     const app = express();

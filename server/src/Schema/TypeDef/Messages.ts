@@ -7,3 +7,10 @@ export const MessageType = new GraphQLObjectType({
         message: { type: GraphQLString },
     }),
 });
+
+export const TokenType = new GraphQLObjectType({
+    name: "Token",
+    fields: () => ({
+        token: { type: GraphQLString }
+    }),
+});

@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLSchema } from "graphql";
 import { CREATE_BOOK, DELETE_BOOK, UPDATE_BOOK } from "./Mutations/Book";
-import { CREATE_USER } from "./Mutations/User";
-import { GET_ALL_BOOKS, GET_BOOK } from "./Queries/Book";
+import { CREATE_USER, USER_LOGIN } from "./Mutations/User";
+import { GET_ALL_BOOKS, GET_BOOK, GET_BOOK_HISTORY } from "./Queries/Book";
 import { GET_ALL_USERS } from "./Queries/User"
 
 const RootQuery = new GraphQLObjectType({
@@ -9,7 +9,8 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         getAllUsers: GET_ALL_USERS,
         getAllBooks: GET_ALL_BOOKS,
-        getBook: GET_BOOK
+        getBook: GET_BOOK,
+        getBookHistory: GET_BOOK_HISTORY,
     },
 });
 
@@ -19,7 +20,8 @@ const Mutation = new GraphQLObjectType({
         createUser: CREATE_USER,
         createBook: CREATE_BOOK,
         deleteBook: DELETE_BOOK,
-        updateBook: UPDATE_BOOK
+        updateBook: UPDATE_BOOK,
+        userLogin: USER_LOGIN,
     },
 });
 
