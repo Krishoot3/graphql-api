@@ -10,7 +10,7 @@ export const CREATE_USER = {
     },
     async resolve(parent: any, args: any) {
         const { email, password } = args;
-        Users.insert(args);
+        await Users.insert(args);
         return args;
     },
 };

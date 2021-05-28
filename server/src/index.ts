@@ -14,7 +14,8 @@ const main = async () => {
         username: "root",
         password: "root",
         logging: true,
-        synchronize: true,
+        //when do you want to create a new tables, change synchronize to true
+        synchronize: false,
         entities: [Users, Books],
     });
 
