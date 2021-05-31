@@ -2,7 +2,7 @@ import { GraphQLObjectType, GraphQLSchema } from "graphql";
 import { CREATE_BOOK, DELETE_BOOK, UPDATE_BOOK } from "./Mutations/Book";
 import { CREATE_USER, USER_LOGIN } from "./Mutations/User";
 import { GET_ALL_BOOKS, GET_BOOK, GET_BOOK_HISTORY } from "./Queries/Book";
-import { GET_ALL_USERS } from "./Queries/User"
+import { GET_ALL_USERS } from "./Queries/User";
 
 const RootQuery = new GraphQLObjectType({
     name: "RootQuery",

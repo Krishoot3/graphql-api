@@ -1,7 +1,7 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { schema } from "./Schema/schema";
-import cors from 'cors'
+import cors from 'cors';
 import { createConnection } from "typeorm";
 import { Users } from "./Entities/User";
 import { BookHistory, Books } from "./Entities/Book";

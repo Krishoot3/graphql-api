@@ -32,8 +32,9 @@ export const USER_LOGIN = {
         } else {
             let buff = new Buffer(findUser.password, 'base64');
             let userPassDecode = buff.toString('ascii');
-
-            if(password == userPassDecode) {
+            console.log(password)
+            console.log(userPassDecode)
+            if(password.localeCompare(userPassDecode)) {
                 let token = jwt.sign( { email: email }, "secret", {
                     expiresIn: 86400 // expires in 24 hours
                   });
