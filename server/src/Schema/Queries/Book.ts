@@ -50,14 +50,16 @@ export const GET_BOOK_HISTORY = {
 
 export const GET_BOOK = {
     type: BookType,
-    args: { id: { type: GraphQLID } },
+    args: { 
+        author: { type: GraphQLString } 
+    },
     async resolve(paranet: any, args: any) {
 
-        const { id } = args;
-        const findBook = await Books.findOne(id);
+        const { author } = args;
+        const findBook = await Books.findOne({ author: author});
   
         if(!findBook) {
-            throw new Error(`The book with the id: ${id} does not exist`);
+            throw new Error(`The book with the author: ${author} does not exist`);
         } else {
             return findBook;
         }
